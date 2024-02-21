@@ -12,7 +12,8 @@ namespace DFSLineupHelper.Adapters
 {
     public class DailyFantasyFuelNHL
     {
-        public static NHLGameList GetPlayerProjections(NHLGameList nhlGames)
+        /*
+        public static NHLTeamList GetPlayerProjections(NHLTeamList nhlGames)
         {
             // Get data from web page.
             HtmlDocument htmlDocument = WebScraper.ScrapeData(NHLConstants.DailyFantasyFuelNHLURL);
@@ -200,6 +201,6 @@ namespace DFSLineupHelper.Adapters
 
             // Return updated games list.
             return nhlGames;
-        }
+        }*/
     }
 }

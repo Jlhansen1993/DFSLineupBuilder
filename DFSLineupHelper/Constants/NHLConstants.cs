@@ -53,11 +53,13 @@ namespace DFSLineupHelper.Constants
         // NumberFire NHL implied totals team xpath.
         public static string NumberFireNHLTeamImpliedTotalsTeamXPath = ".//*[@class='team-player__team active']";
 
-        // DailyFantasyFuel NHL url.
-        // public static string DailyFantasyFuelNHLURL = "https://www.dailyfantasyfuel.com/nhl/projections/";
-        public static string DailyFantasyFuelNHLURL = "https://www.dailyfantasyfuel.com/nhl/projections/draftkings/2024-02-19?slate=18A79";
+        // NumberFire NHL skater projections url.
+        public static string NumberFireNHLSkaterProjectionsURL = "https://www.numberfire.com/nhl/daily-fantasy/daily-hockey-projections";
 
-        // DailyFantasyFuel NHL projection rows xpath.
-        public static string DailyFantasyFuelNHLProjectionsRowsXPath = "/html/body/div[2]/div[1]/div[2]/div/div/table/tbody/tr";
+        // NumberFire NHL goalie projections url.
+        public static string NumberFireNHLGoalieProjectionsURL = "https://www.numberfire.com/nhl/daily-fantasy/daily-hockey-projections/goalies";
+
+        // NumberFire NHL projection rows xpath.
+        public static string NumberFireNHLProjectionsRowXPath = "/html/body/main/div[2]/div[2]/section/div[4]/div[2]/table/tbody/tr";
     }
 }
