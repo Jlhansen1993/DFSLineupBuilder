@@ -165,7 +165,7 @@ namespace DFSLineupHelper.Adapters
                 int salary = Convert.ToInt32(new string(tdNodes[2].InnerText.Where(char.IsDigit).ToArray()));
 
                 // Get goals allowed.
-                double goalsAllowed = Convert.ToDouble(tdNodes[4].InnerText.Replace("\n", "").Replace("\t", ""));
+                double goalsAllowed = Convert.ToDouble(tdNodes[4].InnerText.Replace("\n", "").Replace("\t", "")) * 4;
 
                 // Get saves.
                 double saves = Convert.ToDouble(tdNodes[6].InnerText.Replace("\n", "").Replace("\t", ""));

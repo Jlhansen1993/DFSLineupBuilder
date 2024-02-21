@@ -54,6 +54,9 @@ namespace DFSLineupHelper.Utilities
                 // Define a temp projection list.
                 NHLProjectionList tempProjections = masterUpdatedProjections;
 
+                // Order list by PFP.
+                tempProjections.Sort((p1, p2) => (p2.PFP / (p2.Salary / 1000)).CompareTo((p1.PFP / (p1.Salary / 1000))));
+
                 // Remove players on the current lineup from projection list.
                 foreach (NHLProjection projection in currentLineup)
                     tempProjections.RemoveAll(tp => tp.Name == projection.Name);
@@ -117,6 +120,47 @@ namespace DFSLineupHelper.Utilities
 
             // Return the current lineup.
             return currentLineup;
+        }
+
+        public static void WriteProjectionsToCSV(NHLProjectionList projections)
+        {
+            // Define a master projections list.
+            NHLProjectionList masterProjections = new NHLProjectionList();
+
+            // Loop through each current projection.
+            foreach (NHLProjection projection in projections)
+            {
+                // If the projection is not a goalie, add a util record.
+                if(projection.Position != "G")
+                {
+                    // Add the normal position to the updated list.
+                    masterProjections.Add(new NHLProjection() { Position = projection.Position, Name = projection.Name, Team = projection.Team, Salary = projection.Salary, PFP = projection.PFP });
+
+                    // Add the util position to the updated list.
+                    masterProjections.Add(new NHLProjection() { Position = "UTIL", Name = projection.Name, Team = projection.Team, Salary = projection.Salary, PFP = projection.PFP });
+                }
+            }
+
+            // Sort projections by pfp in desc order.
+            masterProjections.Sort((p1, p2) => p2.PFP.CompareTo(p1.PFP));
+
+            masterProjections.Add(projections.Where(p => p.Position == "G").FirstOrDefault());
+
+            // Delete csv file.
+            File.Delete(@"C:\Users\Justin\DFSProjections\NHL_Projections.csv");
+
+            // Write projections to csv.
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\Justin\DFSProjections\NHL_Projections.csv"))
+            {
+                // Write headers.
+                sw.WriteLine(string.Join("\t", "Position", "Name", "Points", "Salary", "Team"));
+
+                // Loop through projections and add them to the csv.
+                foreach (NHLProjection projection in masterProjections)
+                {
+                    sw.WriteLine(string.Join("\t", projection.Position, projection.Name, projection.PFP, projection.Salary, projection.Team));
+                }
+            }
         }
     }
 }
